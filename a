@@ -1,8 +1,0 @@
-To git@github.com:EncyclopediaOfLife/cukestone.git
- ! [rejected]        frank_dev -> frank_dev (non-fast-forward)
-error: failed to push some refs to 'git@github.com:EncyclopediaOfLife/cukestone.git'
-To prevent you from losing history, non-fast-forward updates were rejected
-Merge the remote changes (e.g. 'git pull') before pushing again.  See the
-'Note about fast-forwards' section of 'git push --help' for details.
-uwsclient-143-228:cukestone fedhell$ 
-
