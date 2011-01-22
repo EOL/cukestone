@@ -19,7 +19,8 @@ require 'capybara/session'
 Capybara.default_selector = :css
 Capybara.save_and_open_page_path = 'tmp'
 Capybara.current_driver = :selenium
-Capybara.app_host = 'http://www.eol.org'
+#Capybara.app_host = 'http://www.eol.org'
+Capybara.app_host = Cukestone::Conf.url
 
 After do |scenario|
   if(scenario.failed?)
