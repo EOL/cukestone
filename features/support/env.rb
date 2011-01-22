@@ -8,10 +8,10 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
 
 require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumber Unicode support
-#require 'cucumber/web/tableish'
 
 require 'capybara/cucumber'
 require 'capybara/session'
+
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
@@ -19,7 +19,6 @@ require 'capybara/session'
 Capybara.default_selector = :css
 Capybara.save_and_open_page_path = 'tmp'
 Capybara.current_driver = :selenium
-#Capybara.app_host = 'http://www.eol.org'
 Capybara.app_host = Cukestone::Conf.url
 
 After do |scenario|
