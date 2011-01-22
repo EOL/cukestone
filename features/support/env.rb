@@ -18,6 +18,11 @@ require 'capybara/session'
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 Capybara.save_and_open_page_path = 'tmp'
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Driver::Selenium.new(app, :browser => Cukestone::Conf.browser.to_sym)
+end
+
 Capybara.current_driver = :selenium
 Capybara.app_host = Cukestone::Conf.url
 
