@@ -18,7 +18,7 @@ require 'capybara/session'
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 Capybara.save_and_open_page_path = 'tmp'
-Capybara.current_driver = :rack_test
+Capybara.current_driver = :selenium
 #Capybara.app_host = 'http://www.eol.org'
 Capybara.app_host = Cukestone::Conf.url
 
@@ -31,4 +31,3 @@ After do |scenario|
     puts "*"*80
   end
 end
-
