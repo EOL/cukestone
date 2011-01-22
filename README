@@ -1,7 +1,7 @@
 Cukestone EOL Acceptance Testing Tool
 
 [Setup]
-- Install the following gems : cucumber, capybara
+- Install the following gems : cucumber, capybara, selenium-webdriver
 - Move config/config.yml.example to config/config.yml and edit as needed. 
   Supported browsers include : firefox, chrome, safari
 

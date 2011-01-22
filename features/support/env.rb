@@ -19,11 +19,11 @@ require 'capybara/session'
 Capybara.default_selector = :css
 Capybara.save_and_open_page_path = 'tmp'
 
-Capybara.register_driver :selenium do |app|
+Capybara.register_driver :selenium_customized do |app|
   Capybara::Driver::Selenium.new(app, :browser => Cukestone::Conf.browser.to_sym)
 end
 
-Capybara.current_driver = :selenium
+Capybara.current_driver = :selenium_customized
 Capybara.app_host = Cukestone::Conf.url
 
 After do |scenario|
