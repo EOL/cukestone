@@ -9,7 +9,7 @@
 
     cp config/config.yml.example config/config.yml
     
-  Supported browsers include : firefox, chrome.
+  Supported browsers include : firefox, chrome, ie.
   
   NOTE : When editing the "browser" variable, make sure that the browser is installed on your machine 
   in the location indicated at http://seleniumhq.org/docs/09_webdriver.html for your OS. 
