@@ -11,6 +11,9 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
+    when /preferences/
+     '/settings?return_to=/'
+
     else
       begin
         page_name =~ /the (.*) page/
