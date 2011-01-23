@@ -2,7 +2,19 @@
 
 == Setup
 * Install the following gems : cucumber, capybara, selenium-webdriver
+
+    sudo gem install cucumber capybara selenium-webdriver
+    
 * Move config/config.yml.example to config/config.yml and edit as needed. 
-  Supported browsers include : firefox, chrome
+
+    cp config/config.yml.example config/config.yml
+    
+  Supported browsers include : firefox, chrome.
+  
+  NOTE : When editing the "browser" variable, make sure that the browser is installed on your machine 
+  in the location indicated at http://seleniumhq.org/docs/09_webdriver.html for your OS. 
+  
+  
+
 
 
