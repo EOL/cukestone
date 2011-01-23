@@ -35,12 +35,7 @@ After do |scenario|
     puts "*"*80
   end
 end
-<<<<<<< HEAD
-Before do
-    Capybara.current_driver = :selenium
-=======
 
 Before do
-  Capybara.current_driver = :selenium
->>>>>>> 53cd3d5... web_steps.rb to allow for aliases without quotations.  added a mapping from 'the search field' to 'q'.
+    Capybara.current_driver = :selenium
 end
