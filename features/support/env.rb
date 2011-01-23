@@ -37,5 +37,5 @@ After do |scenario|
 end
 
 Before do
-    Capybara.current_driver = :selenium
+    Capybara.current_driver = :selenium_customized
 end
