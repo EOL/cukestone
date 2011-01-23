@@ -21,11 +21,18 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
 When /^(?:|I )press "([^"]*)"(?: within "([^"]*)")?$/ do |button, selector|
+  with_scope(selector) do
+    find(to_selector(button)).click
+  end
+end
+
+When /^(?:|I )press (.*)(?: within (.*))?$/ do |button, selector|
   with_scope(selector) do
     find(to_selector(button)).click
   end
@@ -40,6 +47,12 @@ end
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
   with_scope(selector) do
     fill_in(field, :with => value)
+  end
+end
+
+When /^(?:|I )fill in (.*) with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
+   with_scope(selector) do
+    fill_in(to_selector(field), :with => value)
   end
 end
 

@@ -6,11 +6,15 @@ module SelectorHelpers
       
       when /the search button/
          '.search_image'
+      
+      when /the search field/
+         'q'
          
      else
+       
+      # if we can't find a mapping, just return the name that was to be mapped
       from
-      #raise "Can't find mapping from \"#{from}\" to a selector.\n" +
-      #      "Now, go and add a mapping in #{__FILE__}"
+    
     end
   end   
 end
