@@ -35,3 +35,6 @@ After do |scenario|
     puts "*"*80
   end
 end
+Before do
+    Capybara.current_driver = :selenium
+end
