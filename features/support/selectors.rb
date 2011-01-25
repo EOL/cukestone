@@ -10,6 +10,15 @@ module SelectorHelpers
       when /the search field/
          'q'
          
+      when /the username field/
+      	  'user_username'
+      
+      when /the password field/
+      	  'user_password' 
+      	  
+      when /the error flash area/
+      	      'flash-bad'
+      	      
      else
        
       # if we can't find a mapping, just return the name that was to be mapped

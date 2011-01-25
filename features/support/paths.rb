@@ -13,6 +13,9 @@ module NavigationHelpers
 
     when /preferences/
      '/settings?return_to=/'
+     
+    when /the Login page/
+       '/login?return_to=/'
 
     else
       begin
