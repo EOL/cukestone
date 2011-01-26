@@ -30,17 +30,7 @@ When /^(?:|I )press "(.*)"$/ do |button|
   click_button(button)
 end
 
-When /^(?:|I )press (.*)(?: within (.*))?$/ do |button, selector|
- Êwith_scope(selector) do Ê Ê
-    find(to_selector(button)).click
-  end
-end
 
-When /^(?:|I )press "([^"]*)"(?: within "([^"]*)")?$/ do |button, selector|
- Êwith_scope(selector) do
-  Ê Êfind(to_selector(button)).click 
-  end
-end
 
 When /^(?:|I )follow "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
   with_scope(selector) do
