@@ -1,2 +1,13 @@
 url: "http://www.eol.org"
-browser: "chrome"
+browser: "ie"
+
+paths :
+  'the home\s?page'       : '/'
+  'preferences'           : '/settings?return_to=/'
+  'the login page'        : '/login?return_to=/'
+
+selectors :
+  'the search button'     : '.search_image'
+  'the search field'      : 'user_username'
+  'the password field'    : 'user_password'
+  'the error flash area'  : 'flash-bad'
