@@ -1,5 +1,5 @@
 url: "http://www.eol.org"
-browser: "ie"
+browser: "chrome"
 
 paths :
   'the home\s?page'       : '/'
