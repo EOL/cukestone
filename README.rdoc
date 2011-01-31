@@ -1,9 +1,10 @@
 = Cukestone EOL Acceptance Testing Tool
 
 == Setup
-* Install the following gems : cucumber, capybara, selenium-webdriver
+* Install the following gems : cucumber, capybara, selenium-webdriver, rspec
 
-    sudo gem install cucumber capybara selenium-webdriver
+    sudo gem install cucumber capybara selenium-webdriver rspec
+
     
 * Move config/config.yml.example to config/config.yml and edit as needed. 
 
