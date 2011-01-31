@@ -11,14 +11,15 @@ module SelectorHelpers
          'q'
          
       when /the username field/
-      	  'user_username'
+      	'user_username'
       
       when /the password field/
-      	  'user_password' 
+      	'user_password' 
       	  
       when /the error flash area/
-      	      'flash-bad'
-      	      
+      	'flash-bad'
+      when /the login button/
+      	'#full-page-content input[type="submit"]'
      else
        
       # if we can't find a mapping, just return the name that was to be mapped
