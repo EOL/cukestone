@@ -11,4 +11,4 @@ selectors :
   'the search field'      : 'q'
   'the username field'    : 'user_username'
   'the password field'    : 'user_password'
-  'the error flash area'  : 'flash-bad'
+  'the login button'      : '#full-page-content input[type="submit"]'

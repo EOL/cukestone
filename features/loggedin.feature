@@ -2,7 +2,7 @@ Feature: User logged in
 
   @ongo 
   Scenario: Try logging in with an incorrect password
-  When I am on the Login page
+  When I am on the login page
   And I fill in "Username" with "abc"
   And fill in "Password" with "abc"
   And press the login button
