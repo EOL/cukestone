@@ -7,8 +7,7 @@ module NavigationHelpers
   #
   def path_to(page_name)
     #match given the page name with the first that matches a key from
-    #config/config.yml collections then return the associated
-    #path value from the configuration
+    #config/config.yml collections and return it's value
     name = Cukestone::Conf.paths.keys.detect {| path | Regexp.new(path).match(page_name)}
     if not name.nil? then
       Cukestone::Conf.paths[name] 
