@@ -9,6 +9,11 @@ paths :
 selectors :
   'the search button'     : '.search_image'
   'the search field'      : 'q'
+  
+  'a name search'    : 'search_type_names'
+  'a tag search'     : 'search_type_tag'
+  'a fulltext search' : 'search_type_google'
+  
   'the username field'    : 'user_username'
   'the password field'    : 'user_password'
   'the login button'      : '#full-page-content input[type="submit"]'
