@@ -4,7 +4,6 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-
 require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
@@ -107,6 +106,12 @@ end
 When /^(?:|I )choose "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   with_scope(selector) do
     choose(field)
+  end
+end
+
+When /^(?:|I )choose (.*)(?: within (.*))?$/ do |radioButton, selector|
+  with_scope(selector) do
+    choose(to_selector(radioButton))
   end
 end
 
@@ -237,6 +242,18 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should be checked$/ do |labe
     end
   end
 end
+
+Then /^the (.*) checkbox(?: within (.*))? should be checked$/ do |label, selector|
+  with_scope(selector) do
+    field_checked = find_field(to_selector(label))['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_true
+    else
+      assert field_checked
+    end
+  end
+end
+
 
 Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |label, selector|
   with_scope(selector) do
