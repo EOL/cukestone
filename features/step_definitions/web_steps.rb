@@ -27,15 +27,13 @@ When /^(?:|I )go to (.+)$/ do |page_name|
 end
 
 When /^(?:|I )press "([^"]*)"(?: within "([^"]*)")?$/ do |button, selector|
-  with_scope(selector) do
-    find(to_selector(button)).click
-  end
+  res = find(to_selector(button))
+  res ? res.click : button_click(button)
 end
 
 When /^(?:|I )press (.*)(?: within (.*))?$/ do |button, selector|
-  with_scope(selector) do
-    find(to_selector(button)).click
-  end
+  res = find(to_selector(button))
+  res ? res.click : button_click(button)
 end
 
 When /^(?:|I )follow "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
@@ -44,13 +42,13 @@ When /^(?:|I )follow "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
   end
 end
 
-When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
-  with_scope(selector) do
-    fill_in(field, :with => value)
-  end
-end
+#When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
+#  with_scope(selector) do
+#    fill_in(field, :with => value)
+#  end
+#end
 
-When /^(?:|I )fill in (.*) with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
+When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
    with_scope(selector) do
     fill_in(to_selector(field), :with => value)
   end
