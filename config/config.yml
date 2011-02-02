@@ -12,3 +12,7 @@ selectors :
   'the username field'    : 'user_username'
   'the password field'    : 'user_password'
   'the login button'      : '#full-page-content input[type="submit"]'
+  'the play button'       : 'play-button'
+  'play'                  : 'play'
+  'pause'                 : 'pause'
+  'first explore'         : 'top_image_tag_1'

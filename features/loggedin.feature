@@ -8,5 +8,3 @@ Feature: User logged in
   And press the login button
   And I wait 5 seconds
   Then I should see "Invalid login or password" 
-
-

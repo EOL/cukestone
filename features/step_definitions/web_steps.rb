@@ -109,6 +109,43 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do 
   end
 end
 
+
+
+When /^(?:|I )see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+end
+
+Then /^(?:|I )should see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+    @curr_img = "//img[[@alt='#{res}' or @id='#{res}']/@title'"
+  end
+end
+
+
+### these next two steps are works in progress
+
+Then  /^(?:|I )must see the same ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+    this_img = "//img[[@alt='#{res}' or @id='#{res}']/@title'"
+    @curr_img.should == "//img[[@alt='#{res}' or @id='#{res}']/@title'"
+  end
+end
+
+
+Then  /^(?:|I )must see a different ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+    @curr_img.should =~ "//img[[@alt='#{res}' or @id='#{res}']/@title'"
+  end
+end
+
+
+### above two steps are works in progress
+
+
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
