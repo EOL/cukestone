@@ -130,7 +130,7 @@ Then  /^(?:|I )must see the same ([^\"]*) image(?:s)?$/ do | alt_or_id |
   res = to_selector(alt_or_id)
   if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
     this_img = "//img[[@alt='#{res}' or @id='#{res}']/@title'"
-    @curr_img.should == "//img[[@alt='#{res}' or @id='#{res}']/@title'"
+    @curr_img.should eql("//img[[@alt='#{res}' or @id='#{res}']/@title'")
   end
 end
 
@@ -138,10 +138,14 @@ end
 Then  /^(?:|I )must see a different ([^\"]*) image(?:s)?$/ do | alt_or_id |
   res = to_selector(alt_or_id)
   if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-    @curr_img.should =~ "//img[[@alt='#{res}' or @id='#{res}']/@title'"
+    @curr_img.should_not eql("//img[[@alt='#{res}' or @id='#{res}']/@title'")
   end
 end
 
+
+Then /^(?:|I )wait (\d+) seconds$/ do |n|
+ Capybara.default_wait_time = n.to_i
+end
 
 ### above two steps are works in progress
 

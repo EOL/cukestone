@@ -8,5 +8,5 @@ Scenario: User is on the homepage and image rotation is on play
   When I am on the homepage
   When I see the pause image
   Then I should see the first explore image
-  #Then I wait 11 seconds
+  Then I wait 20 seconds
   Then I must see a different first explore image
