@@ -47,9 +47,16 @@ end
 #    fill_in(field, :with => value)
 #  end
 #end
-
+=begin
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
    with_scope(selector) do
+    fill_in(to_selector(field), :with => value)
+  end
+end
+=end
+#this one seems to work, where the above one does not.  Simply tweaked the regular expression
+When /^(?:I\s)?fill in (.+) with "([^"]*)"(?: within ([^\"]*))?$/ do |field, value, scope|
+  with_scope(scope) do
     fill_in(to_selector(field), :with => value)
   end
 end
@@ -228,4 +235,8 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+When /^(?:|I )wait (\d+) seconds$/ do |amount|
+  sleep amount.to_i
 end
