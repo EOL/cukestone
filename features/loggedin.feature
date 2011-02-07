@@ -1,5 +1,5 @@
 Feature: User logged in
-  #And I wait 5 seconds
+  #And I wait 5 seconds #don't need this one anymore
   
   @ongo 
   Scenario: Try logging in with an incorrect password
