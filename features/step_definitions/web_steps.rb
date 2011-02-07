@@ -144,8 +144,10 @@ end
 
 
 Then /^(?:|I )wait (\d+) seconds$/ do |n|
- Capybara.default_wait_time = n.to_i
+  sleep(n.to_i) 
 end
+
+
 
 ### above two steps are works in progress
 
