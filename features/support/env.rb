@@ -15,7 +15,8 @@ Capybara.register_driver :selenium_customized do |app|
   Capybara::Driver::Selenium.new(app, :browser => Cukestone::Conf.browser.to_sym)
 end
 
-Capybara.app_host = Cukestone::Conf.url
+Capybara.app_host= Cukestone::Conf.url
+Capybara.default_wait_time= Cukestone::Conf.default_wait_time if not Cukestone::Conf.default_wait_time.nil?
 
 After do |scenario|
   if(scenario.failed?)
