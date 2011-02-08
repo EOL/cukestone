@@ -1,10 +1,13 @@
 require 'yaml'
 require 'ostruct'
 
-module Cukestone
+module Cukestone  
   conf = open(File.join(File.dirname(__FILE__), 'config.yml')).read
   conf_dict = YAML.load(conf) 
   Conf = OpenStruct.new(conf_dict)
+  
+  Conf.paths = YAML.load(open(File.join(File.dirname(__FILE__), 'paths.yml')).read)
+  Conf.selectors = YAML.load(open(File.join(File.dirname(__FILE__), 'selectors.yml')).read)
 end
 
 #self-test methods can go here
@@ -19,4 +22,3 @@ if __FILE__ == $0 then
   puts "Here are the selectors available to Cukestone"
   p Cukestone::Conf.selectors
 end
-

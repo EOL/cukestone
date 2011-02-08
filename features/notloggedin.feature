@@ -11,4 +11,3 @@ Scenario:  Does the homepage look reasonable?
 Scenario:  Login requires username and password
    When I am on the homepage 
    Then I should be on the homepage
-  
