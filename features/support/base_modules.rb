@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/ConfigError'
+
 module ConfigFinder
   def get_item(what, from_where, &if_no_matches)
     from_where = from_where.to_sym
@@ -5,22 +7,23 @@ module ConfigFinder
     keys = conf_table[from_where].keys
     
     #try an exact match first
-    selector_name = keys.detect { |selector| selector.eql? what }
-    if selector_name.nil? then
+    selector_name = keys.select { |selector| selector.eql? what }
+    if selector_name.length < 1 then
       #do a regular expression match instead
-      selector_name = keys.detect do |selector| 
+      selector_name = keys.select do |selector| 
         what =~ Regexp.new(selector)
       end
     end
-    #There will never be more than one match because everything in
-    #Conf is stored in a hash, therefore, detecting multiple keys
-    #will need to happen possibly even before the YAML module loads
-    #the info into the Conf hash in the Cukestone module
-    
-    if not selector_name.nil? then
-      conf_table[from_where][selector_name]
+    if selector_name.length > 1 then
+      raise ConfigError.new(from_where, "Multiple matches for #{what} : " +
+        "#{selector_name.inspect}\nPlease correct this in #{from_where}.yml")
     else
-      if_no_matches.call
+      selector_name = selector_name.first
+      if not selector_name.nil? then
+        conf_table[from_where][selector_name]
+      else
+        if_no_matches.call
+      end
     end
   end
 end
