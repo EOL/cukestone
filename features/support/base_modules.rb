@@ -1,5 +1,6 @@
 module ConfigFinder
   def get_item(what, from_where, &if_no_matches)
+    from_where = from_where.to_sym
     conf_table = Cukestone::Conf.instance_variable_get(:@table)
     keys = conf_table[from_where].keys
     
