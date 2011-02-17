@@ -1,0 +1,4 @@
+'the home\s?page'       : '/'
+#'the home[ ]?page'      : '/'
+'preferences'           : '/settings?return_to=/'
+'the login page'        : '/login?return_to=/'
