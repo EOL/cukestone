@@ -123,6 +123,9 @@ When /^(?:|I )see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
   page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
 end
 
+require 'ruby-debug'
+debugger
+
 Then /^(?:|I )should see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
   res = to_selector(alt_or_id)
   if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
@@ -150,14 +153,13 @@ Then  /^(?:|I )must see a different ([^\"]*) image(?:s)?$/ do | alt_or_id |
   end
 end
 
+### above two steps are works in progress
+
+
 
 Then /^(?:|I )wait (\d+) seconds$/ do |n|
   sleep(n.to_i) 
 end
-
-
-
-### above two steps are works in progress
 
 
 Then /^(?:|I )should see JSON:$/ do |expected_json|

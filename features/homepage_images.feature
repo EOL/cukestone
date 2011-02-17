@@ -17,5 +17,5 @@ Scenario: User is on the homepage and image rotation is set to play
   When I am on the homepage
   When I see the pause image
   Then I should see the first explore image
-  Then I wait 15 seconds
+  Then I wait 60 seconds
   Then I must see a different first explore image
