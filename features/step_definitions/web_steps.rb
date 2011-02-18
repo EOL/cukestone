@@ -106,7 +106,8 @@ end
 
 When /^(?:|I )choose "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   with_scope(selector) do
-    choose(field)
+    choose("search_type_google")
+#    choose(field)
   end
 end
 
