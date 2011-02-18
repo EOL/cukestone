@@ -1,3 +1,4 @@
+'fulltext search'       : '.search_type_google'
 'the search button'     : '.search_image'
 'the search field'      : 'q'
 'the username field'    : 'user_username'
@@ -8,3 +9,6 @@
 'play'                  : 'play'
 'pause'                 : 'pause'
 'first explore'         : 'top_image_tag_1'
+'name search'           : 'search_type_names'
+'tag search'            : 'search_type_tag'
+
