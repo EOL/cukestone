@@ -10,12 +10,9 @@ Scenario:  Does the homepage look reasonable?
 @search
 Scenario: Full-text Google Search should return a page of results
    When I am on the homepage
-   #     And I choose fulltext search within "#quick_search"
    And I choose fulltext search     
-   #And I choose "search_type_google"
    And I fill in the search field with "lynx"
    And I press the search button
-   # Then I should see "seconds)" 
    Then I should see "googleSearchFrame"
 
 @emptysearch
