@@ -1,2 +1,3 @@
 url: "http://www.eol.org"
 browser: "chrome"
+default_wait_time : 5

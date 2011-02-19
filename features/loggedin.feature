@@ -7,4 +7,6 @@ Feature: User logged in
   And I fill in the username field with "abc"
   And I fill in the password field with "abc"
   And press the login button
-  Then I should see "Invalid login or password"
+  Then I should see "Invalid login or password" 
+
+
