@@ -3,6 +3,8 @@
 'the username field'    : 'user_username'
 'the password field'    : 'user_password'
 'the login button'      : '#full-page-content input[type="submit"]'
+'the Flash Error Message'   : '#flash-bad'
+'the Flash Mask'		: '#exposeMask'
 'the play button'       : 'play-button'
 'the pause button'      : 'play-button'
 'play'                  : 'play'
