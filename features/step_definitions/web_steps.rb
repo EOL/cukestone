@@ -4,7 +4,6 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-
 require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
@@ -206,6 +205,18 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should be checked$/ do |labe
   end
 end
 
+Then /^the (.*) checkbox(?: within (.*))? should be checked$/ do |label, selector|
+  with_scope(selector) do
+    field_checked = find_field(to_selector(label))['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_true
+    else
+      assert field_checked
+    end
+  end
+end
+
+
 Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |label, selector|
   with_scope(selector) do
     field_checked = find_field(label)['checked']
@@ -238,6 +249,24 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
     assert_equal expected_params, actual_params
   end
 end
+
+=begin
+Then /^(?:|I )should have the following in the query string:$/ do |expected_pairs|
+  query = URI.parse(current_url).query
+  actual_params = query ? CGI.parse(query) : {}
+  expected_params = {}
+  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
+
+  expected_params.
+  
+
+  if actual_params.respond_to? :should
+    actual_params.should == expected_params
+  else
+    assert_equal expected_params, actual_params
+  end
+end
+=end
 
 Then /^show me the page$/ do
   save_and_open_page
