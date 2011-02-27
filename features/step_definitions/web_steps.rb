@@ -250,24 +250,6 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   end
 end
 
-=begin
-Then /^(?:|I )should have the following in the query string:$/ do |expected_pairs|
-  query = URI.parse(current_url).query
-  actual_params = query ? CGI.parse(query) : {}
-  expected_params = {}
-  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
-
-  expected_params.
-  
-
-  if actual_params.respond_to? :should
-    actual_params.should == expected_params
-  else
-    assert_equal expected_params, actual_params
-  end
-end
-=end
-
 Then /^show me the page$/ do
   save_and_open_page
 end
