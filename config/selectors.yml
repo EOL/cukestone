@@ -8,7 +8,6 @@
 'play'                  : 'play'
 'pause'                 : 'pause'
 'first explore'         : 'top_image_tag_1'
-'name search'           : 'search_type_names'
+'name search'           : 'search_type_text'
 'tag search'            : 'search_type_tag'
 'fulltext search'       : 'search_type_google'
-#'fulltext search'       : '#full-page-content input[id="search_type_google"]'
