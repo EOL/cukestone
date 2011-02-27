@@ -121,44 +121,6 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do 
   end
 end
 
-
-When /^(?:|I )see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-end
-
-Then /^(?:|I )should see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-
-    #set curr_img to be the title of this image
-    @curr_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
-
-  end
-end
-
-Then  /^(?:|I )must see the same ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-    this_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
-    @curr_img.should eql(this_img)    
-  end
-end
-
-Then  /^(?:|I )must see a different ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-    this_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
-    @curr_img.should_not eql(this_img)    
-  end
-end
-
-
-Then /^(?:|I )wait (\d+) seconds$/ do |n|
-  sleep(n.to_i) 
-end
-
-
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
@@ -287,6 +249,24 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
     assert_equal expected_params, actual_params
   end
 end
+
+=begin
+Then /^(?:|I )should have the following in the query string:$/ do |expected_pairs|
+  query = URI.parse(current_url).query
+  actual_params = query ? CGI.parse(query) : {}
+  expected_params = {}
+  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
+
+  expected_params.
+  
+
+  if actual_params.respond_to? :should
+    actual_params.should == expected_params
+  else
+    assert_equal expected_params, actual_params
+  end
+end
+=end
 
 Then /^show me the page$/ do
   save_and_open_page
