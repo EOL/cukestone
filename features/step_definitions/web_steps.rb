@@ -250,24 +250,36 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   end
 end
 
-=begin
-Then /^(?:|I )should have the following in the query string:$/ do |expected_pairs|
+Then /^(?:|I )should have the following pairs in the query string:$/ do |expected_pairs|
   query = URI.parse(current_url).query
   actual_params = query ? CGI.parse(query) : {}
   expected_params = {}
   expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
 
-  expected_params.
-  
-
-  if actual_params.respond_to? :should
-    actual_params.should == expected_params
-  else
-    assert_equal expected_params, actual_params
+  expected_params.each do |k,v|
+    v.eql?(actual_params.fetch(k))
   end
 end
-=end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+#Then /^the selected text within (.+) is "([^"]*)"$/ do |field, text|
+Then /^the selected text is "([^"]*)"$/ do |text|
+
+  if Cukestone::Conf.browser.eql?("ie")
+    selected = page.evaluate_script('document.selection.createRange') 
+  else
+    val = page.evaluate_script('document.activeElement.value') 
+
+    if val.eql?(nil)
+      selected = page.evaluate_script('window.getSelection().toString()')
+    else
+      selStart = page.evaluate_script('document.activeElement.selectionStart')
+      selEnd = page.evaluate_script('document.activeElement.selectionStart')
+      selected = val[selStart, selEnd]
+    end
+  end
+  selected.eql?(text)   
 end
