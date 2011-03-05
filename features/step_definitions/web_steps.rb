@@ -269,7 +269,7 @@ end
 Then /^the selected text is "([^"]*)"$/ do |text|
 
   if Cukestone::Conf.browser.eql?("ie")
-    selected = page.evaluate_script('document.selection.createRange') 
+    selected = page.evaluate_script('document.selection.createRange().text') 
   else
     val = page.evaluate_script('document.activeElement.value') 
 
