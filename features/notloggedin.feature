@@ -31,7 +31,6 @@ Scenario: Does the "tag" radio button stay selected after a search for "video"? 
     |search_type|tag| 
   #And I should see more than two pages of result...
 
-#<input class="left" id="q" maxlength="250" name="q" onfocus="javascript:$(this).select();" size="20" type="text" value="video"/>
 @focus
 Scenario: Giving focus to the search box should select all of the text there.
   When I am on the homepage

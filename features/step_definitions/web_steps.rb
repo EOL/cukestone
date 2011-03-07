@@ -265,14 +265,11 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-#Then /^the selected text within (.+) is "([^"]*)"$/ do |field, text|
 Then /^the selected text is "([^"]*)"$/ do |text|
-
   if Cukestone::Conf.browser.eql?("ie")
     selected = page.evaluate_script('document.selection.createRange().text') 
   else
     val = page.evaluate_script('document.activeElement.value') 
-
     if val.eql?(nil)
       selected = page.evaluate_script('window.getSelection().toString()')
     else
