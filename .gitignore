@@ -1,2 +1,5 @@
 *swp
 config.yml
+*.pnproj
+*.pnps
+features/current_test.txt
