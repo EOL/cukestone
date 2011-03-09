@@ -93,15 +93,15 @@ When /^(?:|I )fill in the following(?: within "([^"]*)")?:$/ do |selector, field
   end
 end
 
-When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
-  with_scope(selector) do
-    select(value, :from => field)
-  end
-end
-
 When /^(?:|I )check "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   with_scope(selector) do
     check(field)
+  end
+end
+
+When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
+  with_scope(selector) do
+    select(value, :from => field)
   end
 end
 
@@ -144,7 +144,6 @@ end
 Then /^(?:|I )wait (\d+) seconds$/ do |n|
   sleep(n.to_i)
 end
-
 
 # HACK here!  Seems there a lot of ways "should see" can be used -- plain text
 # css, xpath, json, etc.  Need to figure out way to reduce redundancy where possible.
@@ -311,4 +310,8 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+Then /^(.+) should have focus$/ do |element|
+  raise TestFailure.new("did not have focus", element) unless to_selector(element) == currently_focused()
 end
