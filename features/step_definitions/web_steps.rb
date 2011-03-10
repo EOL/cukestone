@@ -121,6 +121,10 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do 
   end
 end
 
+When /^I click on the page$/ do
+  page.execute_script("jQuery(document.activeElement).blur();")
+end
+
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
@@ -227,7 +231,7 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |
     end
   end
 end
- 
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -242,7 +246,7 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   actual_params = query ? CGI.parse(query) : {}
   expected_params = {}
   expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
-  
+
   if actual_params.respond_to? :should
     actual_params.should == expected_params
   else
@@ -267,16 +271,16 @@ end
 
 Then /^the selected text is "([^"]*)"$/ do |text|
   if Cukestone::Conf.browser.eql?("ie")
-    selected = page.evaluate_script('document.selection.createRange().text') 
+    selected = page.evaluate_script('document.selection.createRange().text')
   else
-    val = page.evaluate_script('document.activeElement.value') 
+    val = page.evaluate_script('document.activeElement.value')
     if val.eql?(nil)
       selected = page.evaluate_script('window.getSelection().toString()')
     else
       selStart = page.evaluate_script('document.activeElement.selectionStart')
-      selEnd = page.evaluate_script('document.activeElement.selectionStart')
+      selEnd = page.evaluate_script('document.activeElement.selectionEnd')
       selected = val[selStart, selEnd]
     end
   end
-  selected.eql?(text)   
+  selected.should == text
 end
