@@ -19,7 +19,7 @@ Scenario: Full-text Google Search should return a page of results
     |search_type|google|
 
 #Note : This query does not currently have more than 2 pages of results
-@tag
+@tagradiobtn
 Scenario: Does the "tag" radio button stay selected after a search for "video"? More than 2 pages of results?
   When I am on the homepage
   And I choose tag search
@@ -36,9 +36,8 @@ Scenario: Giving focus to the search box should select all of the text there.
   When I am on the homepage
   And I fill in the search field with "selected"
   And I click on the page
-  #And I choose tag search
+  And I give the search field focus
   Then the selected text is "selected"
-
 
 @emptysearch
 Scenario:  User tries to search but doesn't give any input

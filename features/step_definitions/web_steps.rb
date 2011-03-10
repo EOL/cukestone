@@ -125,6 +125,10 @@ When /^I click on the page$/ do
   page.execute_script("jQuery(document.activeElement).blur();")
 end
 
+When /^(?:|I )give (.+) focus$/ do |selector|
+  page.execute_script("jQuery('##{to_selector(selector)}').focus()")
+end
+
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
