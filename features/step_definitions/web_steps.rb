@@ -35,9 +35,9 @@ When /^(?:|I )press (.*)(?: within (.*))?$/ do |button, selector|
   res ? res.click : button_click(button)
 end
 
-When /^(?:|I )follow "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
+When /^(?:|I )(?:follow|click) "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
   with_scope(selector) do
-    click_link(link)
+      click_link(link)
   end
 end
 
@@ -54,6 +54,7 @@ When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field
 end
 =end
 #this one seems to work, where the above one does not.  Simply tweaked the regular expression
+
 When /^(?:I\s)?fill in (.+) with "([^"]*)"(?: within ([^\"]*))?$/ do |field, value, scope|
   with_scope(scope) do
     fill_in(to_selector(field), :with => value)
@@ -118,38 +119,6 @@ end
 When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do |path, field, selector|
   with_scope(selector) do
     attach_file(field, path)
-  end
-end
-
-
-When /^(?:|I )see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-end
-
-Then /^(?:|I )should see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-
-    #set curr_img to be the title of this image
-    @curr_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
-
-  end
-end
-
-Then  /^(?:|I )must see the same ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-    this_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
-    @curr_img.should eql(this_img)    
-  end
-end
-
-Then  /^(?:|I )must see a different ([^\"]*) image(?:s)?$/ do | alt_or_id |
-  res = to_selector(alt_or_id)
-  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
-    this_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
-    @curr_img.should_not eql(this_img)    
   end
 end
 
