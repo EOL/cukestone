@@ -4,7 +4,6 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-
 require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
@@ -110,11 +109,55 @@ When /^(?:|I )choose "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   end
 end
 
+When /^(?:|I )choose (.*)(?: within (.*))?$/ do |radioButton, selector|
+  with_scope(selector) do
+    choose(to_selector(radioButton))
+  end
+end
+
 When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do |path, field, selector|
   with_scope(selector) do
     attach_file(field, path)
   end
 end
+
+
+When /^(?:|I )see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+end
+
+Then /^(?:|I )should see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+
+    #set curr_img to be the title of this image
+    @curr_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
+
+  end
+end
+
+Then  /^(?:|I )must see the same ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+    this_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
+    @curr_img.should eql(this_img)    
+  end
+end
+
+Then  /^(?:|I )must see a different ([^\"]*) image(?:s)?$/ do | alt_or_id |
+  res = to_selector(alt_or_id)
+  if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
+    this_img = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
+    @curr_img.should_not eql(this_img)    
+  end
+end
+
+
+Then /^(?:|I )wait (\d+) seconds$/ do |n|
+  sleep(n.to_i) 
+end
+
 
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
@@ -199,6 +242,18 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should be checked$/ do |labe
     end
   end
 end
+
+Then /^the (.*) checkbox(?: within (.*))? should be checked$/ do |label, selector|
+  with_scope(selector) do
+    field_checked = find_field(to_selector(label))['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_true
+    else
+      assert field_checked
+    end
+  end
+end
+
 
 Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |label, selector|
   with_scope(selector) do

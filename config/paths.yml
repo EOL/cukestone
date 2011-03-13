@@ -2,3 +2,4 @@
 #'the home[ ]?page'      : '/'
 'preferences'           : '/settings?return_to=/'
 'the login page'        : '/login?return_to=/'
+'the tiger page'        : '/pages/328674'
