@@ -26,7 +26,7 @@ Scenario: Does the "tag" radio button stay selected after a search for "video"? 
   And I fill in the search field with "video"
   And I press the search button
   Then the tag search checkbox should be checked
-  Then I should have the following query string:
+  Then I should have the following pairs in the query string:
     |q|video|
     |search_type|tag|
   #And I should see more than two pages of result...
