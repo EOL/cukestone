@@ -41,7 +41,7 @@ Scenario: User clicks "more species"
   And I should see the fifth explore image
   And I should see the sixth explore image
   Then I click "more species"
-  Then I wait 5 seconds
+  Then I wait 6 seconds
   Then I must see a different first explore image
   Then I must see a different second explore image
   Then I must see a different third explore image

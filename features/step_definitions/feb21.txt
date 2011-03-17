@@ -1,0 +1,8 @@
+have an xpath -
+check for pre-pended "//"
+to be more explicit: if xpath selector...
+
+helper that says "make xpath" which would analyze what you got 
+
+
+be able to write methods so that it uses xpath or css
