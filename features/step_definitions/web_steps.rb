@@ -122,9 +122,20 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do 
   end
 end
 
+When /^I click on the page$/ do
+  page.execute_script("jQuery(document.activeElement).blur();")
+end
+
+=begin
+#Generic focus step skeleton
+#Needs to be changed to follow xpath/css convention
+When /^(?:|I )give (.+) focus$/ do |selector|
+ page.execute_script("jQuery('##{to_selector(selector)}').focus()")
+end
+=end
 
 Then /^(?:|I )wait (\d+) seconds$/ do |n|
-  sleep(n.to_i) 
+  sleep(n.to_i)
 end
 
 
@@ -234,7 +245,7 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |
     end
   end
 end
- 
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -249,12 +260,39 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   actual_params = query ? CGI.parse(query) : {}
   expected_params = {}
   expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
-  
+
   if actual_params.respond_to? :should
     actual_params.should == expected_params
   else
     assert_equal expected_params, actual_params
   end
+end
+
+Then /^(?:|I )should have the following pairs in the query string:$/ do |expected_pairs|
+  query = URI.parse(current_url).query
+  actual_params = query ? CGI.parse(query) : {}
+  expected_params = {}
+  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
+
+  expected_params.each do |k,v|
+    v.eql?(actual_params.fetch(k))
+  end
+end
+
+Then /^the selected text is "([^"]*)"$/ do |text|
+  if Cukestone::Conf.browser.eql?("ie")
+    selected = page.evaluate_script('document.selection.createRange().text')
+  else
+    val = page.evaluate_script('document.activeElement.value')
+    if val.eql?(nil)
+      selected = page.evaluate_script('window.getSelection().toString()')
+    else
+      selStart = page.evaluate_script('document.activeElement.selectionStart')
+      selEnd = page.evaluate_script('document.activeElement.selectionEnd')
+      selected = val[selStart, selEnd]
+    end
+  end
+  selected.should == text
 end
 
 Then /^show me the page$/ do
