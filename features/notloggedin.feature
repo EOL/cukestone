@@ -26,7 +26,7 @@ Scenario: Does the "tag" radio button stay selected after a search for "video"? 
   And I fill in the search field with "video"
   And I press the search button
   Then the tag search checkbox should be checked
-  And I wait 7 seconds
+  And I wait 10 seconds
   And I should have the following pairs in the query string:
     |q|video|
     |search_type|tag|
