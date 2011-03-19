@@ -1,11 +1,11 @@
 require 'yaml'
 require 'ostruct'
 
-module Cukestone  
+module Cukestone
   conf = open(File.join(File.dirname(__FILE__), 'config.yml')).read
-  conf_dict = YAML.load(conf) 
+  conf_dict = YAML.load(conf)
   Conf = OpenStruct.new(conf_dict)
-  
+
   Conf.paths = YAML.load(open(File.join(File.dirname(__FILE__), 'paths.yml')).read)
   Conf.selectors = YAML.load(open(File.join(File.dirname(__FILE__), 'selectors.yml')).read)
 end
@@ -16,7 +16,7 @@ end
 if __FILE__ == $0 then
 #  puts "Here are the paths available to Cukestone"
 #  p Cukestone::Conf.paths
-  
+
   i_want = "the homepage"
   #try exact match
   key = Cukestone::Conf.paths.keys.select { |i| i.eql? i_want }
@@ -30,6 +30,8 @@ if __FILE__ == $0 then
   puts "The key is: #{key}"
   puts "The value is: #{Cukestone::Conf.paths[key]}"
   
+  puts "Available selectors are: #{Cukestone::Conf.selectors.inspect}"
+
 #  puts "Here are the selectors available to Cukestone"
 #  p Cukestone::Conf.selectors
 end
