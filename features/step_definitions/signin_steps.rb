@@ -26,10 +26,6 @@ When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|
   click_link(to_selector(link))
 end
 
-#When /^(?:|I )follow the link with text "([^"]*)"$/ do |link|
-#  find_link(link).click
-#end
-
 When /^(?:|I )follow the link with text "([^"]*)" (within (.+))$/ do |link,selector|
   with_scope(to_selector(selector)) do
     find_link(link).click
@@ -46,10 +42,6 @@ Then /^(?:|I )should see "([^"]*)" within (.+)$/ do |text, selector|
     end
   end
 end
-
-#When /^(?:|I )should see a link with text "([^"]*)"$/ do |text|
-#  page.should have_link(text)
-#end
 
 When /^(?:|I )should see a link with text "([^"]*)" (within (.+))$/ do |text,selector|
   with_scope(to_selector(selector)) do
