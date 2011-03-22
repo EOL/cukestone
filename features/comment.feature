@@ -1,6 +1,5 @@
 Feature: Tagging and Comment
 
-### Tag #####
 
   Scenario: Adding tags should update both the public tags and the "my tags" areas.
   Given I am signed in as a user
@@ -13,7 +12,6 @@ Feature: Tagging and Comment
   And should see "tiger" within my tags block
 
 
-### Comments ###
   Scenario: Submit button should do nothing if comment is empty
   Given I am signed in as a user
   When I am on the tiger page
