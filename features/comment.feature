@@ -1,6 +1,5 @@
 Feature: Tagging and Comment 
 
-### Tag ##### 
   
   Scenario: Adding tags should update both the public tags and the "my tags" areas.
   Given I sign in as "capstone_user"
@@ -13,7 +12,6 @@ Feature: Tagging and Comment
   And should see "tiger" within my tags block
   
   
-### Comments ###
   Scenario: Submit button should do nothing if comment is empty
   Given I sign in as "capstone_user"
   When I am on the tiger page
