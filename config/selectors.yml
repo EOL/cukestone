@@ -29,4 +29,22 @@
 'the curator checkbox'  : 'curator_request'
 
 'the Flash Error Message'   : '#flash-bad'
-'the Flash Mask'        : '#exposeMask
+'the Flash Mask'        : '#exposeMask'
+
+'the Flash Error Message'   : '#flash-bad'
+'the Flash Mask'        : '#exposeMask'
+'the tag image link'      : 'large-image-tagging-button-popup-link'
+'the Add Tag field'       : 'tag_value'
+'Add This Tag button'      : '#add_data_object_tags_fields input[type="submit"]'
+'the public image tags block' : '#public_data_object_tags'
+'my tags block'         : '#my_data_object_tags'
+
+'the comment link'  : 'comment_button_link_6656043'
+'the comment link block'  : '#comment_button_link_6656043'
+'the add new comment field' : 'comment_body_6656043'
+'the Post Comment button' : '#submit_comment_6656043'
+'the comments block'  : '#commentsContain'
+'the next link' : '#commentsContain '
+'the previous link' : ''
+
+'the comment count' : '#large-image-comment-button .popup-link .span_block'

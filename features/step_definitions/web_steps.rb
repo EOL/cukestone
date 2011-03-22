@@ -93,17 +93,18 @@ When /^(?:|I )fill in the following(?: within "([^"]*)")?:$/ do |selector, field
   end
 end
 
+When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
+  with_scope(selector) do
+    select(value, :from => field)
+  end
+end
+
 When /^(?:|I )check "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   with_scope(selector) do
     check(field)
   end
 end
 
-When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
-  with_scope(selector) do
-    select(value, :from => field)
-  end
-end
 
 When /^(?:|I )uncheck "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   with_scope(selector) do
@@ -148,6 +149,10 @@ end
 # HACK here!  Seems there a lot of ways "should see" can be used -- plain text
 # css, xpath, json, etc.  Need to figure out way to reduce redundancy where possible.
 
+Then /^(?:|I )should see <([^"]*)>$/ do |css|
+    page.should have_css(to_selector(css))
+end
+
 When /^(.+) should be visible$/ do |field|
   find(to_selector(field)).visible?.should be_true
 end
@@ -156,9 +161,6 @@ Then /^(.+) should be invisible$/ do |field|
   find(to_selector(field)).visible?.should be_false
 end
 
-Then /^(?:|I )should see <([^"]*)>$/ do |css|
-    page.should have_css(to_selector(css))
-end
 
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
@@ -185,6 +187,24 @@ Then /^(?:|I )should see \/([^\/]*)\/(?: within "([^"]*)")?$/ do |regexp, select
     else
       assert page.has_xpath?('//*', :text => regexp)
     end
+  end
+end
+
+Then /^(?:|I )should see "([^"]*)" within (.+)$/ do |text, selector|
+  with_scope(to_selector(selector)) do
+      page.should have_content(text)
+  end
+end
+
+When /^(?:|I )should see a link with text "([^"]*)"(?: within (.+))?$/ do |text,selector|
+  with_scope(to_selector(selector)) do
+    page.should have_link(text)
+  end
+end
+
+Then /^(?:|I )should not see a link with text "([^"]*)"(?: within (.+))?$/ do |text,selector|
+  with_scope(to_selector(selector)) do
+    page.should_not have_link(text)
   end
 end
 
@@ -318,6 +338,15 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|
+  linkLocator=to_selector(link)
+  if ( linkLocator =~ /#/)
+    find(linkLocator).click
+  else
+    find_link(linkLocator).click
+  end
 end
 
 Then /^(.+) should have focus$/ do |element|
