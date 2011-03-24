@@ -41,6 +41,13 @@ When /^(?:|I )(?:follow|click) "([^"]*)"(?: within "([^"]*)")?$/ do |link, selec
   end
 end
 
+When /^(?:|I )(?:follow|click) all "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
+  with_scope(to_selector(selector)) do
+      all(to_selector(link)).each { |l| l.click }
+  end
+end
+
+
 #When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
 #  with_scope(selector) do
 #    fill_in(field, :with => value)
@@ -139,6 +146,13 @@ Then /^(?:|I )wait (\d+) seconds$/ do |n|
 end
 
 
+# HACK here!  Seems there a lot of ways "should see" can be used -- plain text
+# css, xpath, json, etc.  Need to figure out way to reduce redundancy where possible.
+
+Then /^(?:|I )should see <([^"]*)>$/ do |css|
+    page.should have_css(to_selector(css))
+end
+
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
@@ -147,7 +161,7 @@ Then /^(?:|I )should see JSON:$/ do |expected_json|
 end
 
 Then /^(?:|I )should see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selector|
-  with_scope(selector) do
+  with_scope(to_selector(selector)) do
     if page.respond_to? :should
       page.should have_content(text)
     else
