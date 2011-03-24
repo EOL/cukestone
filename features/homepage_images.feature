@@ -48,3 +48,8 @@ Scenario: User clicks "more species"
   Then I must see a different fourth explore image
   Then I must see a different fifth explore image
   Then I must see a different sixth explore image
+
+Scenario: User clicks a news item
+  When I am on the homepage
+  When I click all "news headlines" within "Whats New"
+  Then I should see <expanded news item>
