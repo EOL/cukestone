@@ -30,9 +30,6 @@
 
 'the Flash Error Message'   : '#flash-bad'
 'the Flash Mask'        : '#exposeMask'
-
-'the Flash Error Message'   : '#flash-bad'
-'the Flash Mask'        : '#exposeMask'
 'the tag image link'      : 'large-image-tagging-button-popup-link'
 'the Add Tag field'       : 'tag_value'
 'Add This Tag button'      : '#add_data_object_tags_fields input[type="submit"]'
