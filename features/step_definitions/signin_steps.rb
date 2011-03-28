@@ -1,12 +1,39 @@
-Given /^I sign in as "(.*)"$/ do |user|
+When /^I login as a user$/ do
+    fill_in(to_selector('the username field'), :with => Cukestone::Conf.user)
+    fill_in(to_selector('the password field'), :with => Cukestone::Conf.user_password)
+    find(to_selector('the login button')).click
+end
+
+When /^I login as a curator$/ do
+    fill_in(to_selector('the username field'), :with => Cukestone::Conf.curator)
+    fill_in(to_selector('the password field'), :with => Cukestone::Conf.curator_password)
+    find(to_selector('the login button')).click
+end
+
+Given /^I sign in as a (.*)$/ do |user|
   steps %Q{
     When I am on the login page
-    And I fill in the username field with "#{user}"
-    And I fill in the password field with the "#{user}_password"
-    And I press the login button
+    And I login as a #{user}
     And wait 3 seconds
   }  
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Given /^I fill in (.+) with the "([^"]*)"$/ do |field,password|	
   fill_in(to_selector(field), :with => to_selector(password))
