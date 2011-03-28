@@ -19,43 +19,12 @@ Given /^I sign in as a (.*)$/ do |user|
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Given /^I fill in (.+) with the "([^"]*)"$/ do |field,password|	
-  fill_in(to_selector(field), :with => to_selector(password))
-end
-
-
-When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|
-  click_link(to_selector(link))
-end
-
-When /^(?:|I )follow the link with text "([^"]*)"(?: within (.+))$/ do |link,selector|
-  with_scope(to_selector(selector)) do
-    find_link(link).click
-  end
-end
-
 Then /^(?:|I )should see the comment count(?: increased by (\d+))?$/ do |number|	
   if @comment_count 	  
-    new_count = find(to_selector('the comment count')).text.to_i
-    (new_count - @comment_count).should == number.to_i
+  	  new_count = find(to_selector('the comment count')).text.to_i
+  	  (new_count - @comment_count).should == number.to_i
   else  	  
-    @comment_count = find(to_selector('the comment count')).text.to_i
+  	  @comment_count = find(to_selector('the comment count')).text.to_i
   end
 end
 
