@@ -352,3 +352,18 @@ end
 Then /^(.+) should have focus$/ do |element|
   raise TestFailure.new("did not have focus", element) unless to_selector(element) == currently_focused()
 end
+
+
+Given /^I fill in (.+) with the "([^"]*)"$/ do |field,password|
+  fill_in(to_selector(field), :with => to_selector(password))
+end
+
+When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|
+  click_link(to_selector(link))
+end
+
+When /^(?:|I )follow the link with text "([^"]*)"(?: within (.+))$/ do |link,selector|
+  with_scope(to_selector(selector)) do
+    find_link(link).click
+  end
+end
