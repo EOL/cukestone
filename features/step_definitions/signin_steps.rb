@@ -28,6 +28,10 @@ Then /^(?:|I )should see the comment count(?: increased by (\d+))?$/ do |number|
   end
 end
 
+When /^I should see the pagination$/ do
+  page.should have_css(to_selector('the pagination'))
+end
+
 
 Then /^(?:|I )should see "([^"]*)" within (.+)$/ do |text, selector|
   with_scope(to_selector(selector)) do	  
