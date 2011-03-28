@@ -36,12 +36,11 @@
 'the public image tags block' : '#public_data_object_tags'
 'my tags block'         : '#my_data_object_tags'
 
-'the comment link'  : 'comment_button_link_6656043'
-'the comment link block'  : '#comment_button_link_6656043'
-'the add new comment field' : 'comment_body_6656043'
-'the Post Comment button' : '#submit_comment_6656043'
-'the comments block'  : '#commentsContain'
-'the next link' : '#commentsContain '
-'the previous link' : ''
+'the image comment link'  : '#large-image-comment-button .popup-link .span_block'
+'the add new comment field' : 'comment[body]'
+'the Post Comment button' : '#commentsContain .new_comment .post_comment'
+'the pagination' : '#commentsContain .pagination'
+'the next link' : '#commentsContain .pagination'
+'the previous link' : '#commentsContain .pagination'
 
 'the comment count' : '#large-image-comment-button .popup-link .span_block'
