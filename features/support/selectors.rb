@@ -5,8 +5,8 @@ module SelectorHelpers
   # Maps a name to a selector object.
   def to_selector(from)
     self.get_item(from, :selectors) do #if not matches
-      raise "Can't find selector for key: #{from}, \n" +
-        "Please add it to config/selectors.yml"
+      # If a selector can't be found the argument is returned
+      from 
     end
   end   
 end
