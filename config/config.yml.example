@@ -1,2 +1,7 @@
 url: "http://www.eol.org"
 browser: "firefox"
+
+user: ""
+user_password: ""
+curator: ""
+curator_password: ""
