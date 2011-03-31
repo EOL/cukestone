@@ -358,15 +358,6 @@ Given /^I fill in (.+) with the "([^"]*)"$/ do |field,password|
   fill_in(to_selector(field), :with => to_selector(password))
 end
 
-When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|  
-  linkLocator=to_selector(link)
-  if ( linkLocator =~ /#/)
-    find(linkLocator).click
-  else
-    find_link(linkLocator).click
-  end
-end
-
 When /^(?:|I )follow the link with text "([^"]*)"(?: within ([^"]*))?$/ do |link,selector|
   with_scope(to_selector(selector)) do
     find_link(link).click
