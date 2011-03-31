@@ -41,8 +41,6 @@
 'the Post Comment button' : '#commentsContain .new_comment .post_comment'
 'the comment count' : '#large-image-comment-button .popup-link .span_block'
 'the pagination' : '#commentsContain .pagination'
-'the current page link': '#commentsContain .pagination .current'
-'the next page link' : '#commentsContain .pagination'
-'the previous link' : '#commentsContain .pagination'
+
 
 'the comment count' : '#large-image-comment-button .popup-link .span_block'
