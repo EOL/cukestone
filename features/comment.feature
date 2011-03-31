@@ -52,7 +52,7 @@ Feature: Tagging and Comment
   And wait 3 seconds  
   Then I should see the pagination
 
-  @js
+  
   Scenario: comment count should remain the same after paginating
   Given I sign in as a user
   When I am on the tiger page
