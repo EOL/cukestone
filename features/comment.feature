@@ -30,24 +30,24 @@ Feature: Tagging and Comment
   And wait 3 seconds
   Then I should see "This is a new comment test."
 
-  
-  Scenario: The comment-count on the comment icon should get updated for each addition of comment on image and text.
+
+  Scenario: The comment-count on the comment icon should get updated for each addition of comment on image .
   Given I sign in as a user
   When I am on the tiger page
   And wait 3 seconds
-  And I should see the comment count
+  And I should see the image comment count
   And follow the image comment link
   And fill in the add new comment field with "test 2."
   And press the Post Comment button
   And wait 3 seconds
   Then I should see "test 2."
-  And I should see the comment count increased by 1
+  And I should see the image comment count increased by 1
   
   
   Scenario: Paginating should be available if there are more than 10 comments of Images   
   Given I sign in as a user
   When I am on the tiger page
-  And I should see the comment count  
+  And I should see the image comment count  
   And follow the image comment link
   And wait 3 seconds  
   Then I should see the pagination
@@ -56,12 +56,42 @@ Feature: Tagging and Comment
   Scenario: comment count should remain the same after paginating
   Given I sign in as a user
   When I am on the tiger page
-  And I should see the comment count  
+  And I should see the image comment count  
   And follow the image comment link
   And wait 3 seconds  
   And I should see the pagination
   And I follow "Next »"
-  Then I should see the comment count increased by 0
+  Then I should see the image comment count increased by 0
 
+ 
+  Scenario: The comment-count on the comment icon should get updated for each addition of comment on text .
+  Given I sign in as a user
+  When I am on the tiger page
+  And wait 3 seconds
+  And I should see the text comment count
+  And follow the text comment link
+  And fill in the add new comment field with "text page comment."
+  And press the Post Comment button
+  And wait 3 seconds
+  Then I should see "text page comment."
+  And I should see the text comment count increased by 1
 
   
+  Scenario: Paginating should be available if there are more than 10 comments of text 
+  Given I sign in as a user
+  When I am on the tiger page
+  And I should see the text comment count  
+  And follow the image comment link
+  And wait 3 seconds  
+  Then I should see the pagination
+
+  
+  Scenario: text comment count should remain the same after paginating
+  Given I sign in as a user
+  When I am on the tiger page
+  And I should see the text comment count  
+  And follow the text comment link
+  And wait 3 seconds  
+  And I should see the pagination
+  And I follow "Next »"
+  Then I should see the text comment count increased by 0

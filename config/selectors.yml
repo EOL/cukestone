@@ -27,9 +27,11 @@
 'my tags block'         : '#my_data_object_tags'
 
 'the image comment link'  : '#large-image-comment-button .popup-link .span_block'
+'the text comment link'  : '#right_text_buttons_group .popup-link .span_block'
 'the add new comment field' : 'comment[body]'
 'the Post Comment button' : '#commentsContain .new_comment .post_comment'
-'the comment count' : '#large-image-comment-button .popup-link .span_block' 
+'the image comment count' : '#large-image-comment-button .popup-link .span_block' 
+'the text comment count' : '#right_text_buttons_group .popup-link .span_block' 
 'the pagination' : '#commentsContain .pagination'
 
 
