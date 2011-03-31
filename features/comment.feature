@@ -1,6 +1,6 @@
 Feature: Tagging and Comment 
 
-  
+  @js
   Scenario: Adding tags should update both the public tags and the "my tags" areas.
   Given I sign in as a user
   When I am on the tiger page  
@@ -20,7 +20,7 @@ Feature: Tagging and Comment
   And wait 3 seconds
   Then I should see "Comment should not be empty"
   
-  
+  @js
   Scenario: Comments should be posted successfully if it is not empty 
   Given I sign in as a user
   When I am on the tiger page
@@ -43,18 +43,12 @@ Feature: Tagging and Comment
   Then I should see "test 2."
   And I should see the comment count increased by 1
   
-  @js
+  
   Scenario: Paginating should be available if there are more than 10 comments of Images   
   Given I sign in as a user
   When I am on the tiger page
   And I should see the comment count  
   And follow the image comment link
   And wait 3 seconds  
-  And I should see the pagination
-  And I should not see a link with text "1" within the comments block
-  And I should see a link with text "2" within the comments block
-  And I follow the link with text "Next"
-  Then I should see a link with text "1" within the comments block
-  And should not see a link with text "2" within the comments block
-  And should see the comment count increased by 0  
+  Then I should see the pagination
   
