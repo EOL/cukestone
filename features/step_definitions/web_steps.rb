@@ -299,18 +299,11 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-
 When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|   
   linkLocator=to_selector(link)
   if ( linkLocator =~ /#/)
     find(linkLocator).click
   else
     find_link(linkLocator).click
-  end
-end
-
-When /^(?:|I )follow the link with text "([^"]*)"(?: within ([^"]*))?$/ do |link,selector|
-  with_scope(to_selector(selector)) do
-    find_link(link).click
   end
 end

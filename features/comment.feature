@@ -1,6 +1,6 @@
 Feature: Tagging and Comment 
 
-  @js
+  
   Scenario: Adding tags should update both the public tags and the "my tags" areas.
   Given I sign in as a user
   When I am on the tiger page  
@@ -20,7 +20,7 @@ Feature: Tagging and Comment
   And wait 3 seconds
   Then I should see "Comment should not be empty"
   
-  @js
+  
   Scenario: Comments should be posted successfully if it is not empty 
   Given I sign in as a user
   When I am on the tiger page
@@ -51,4 +51,17 @@ Feature: Tagging and Comment
   And follow the image comment link
   And wait 3 seconds  
   Then I should see the pagination
+
+  @js
+  Scenario: comment count should remain the same after paginating
+  Given I sign in as a user
+  When I am on the tiger page
+  And I should see the comment count  
+  And follow the image comment link
+  And wait 3 seconds  
+  And I should see the pagination
+  And I follow "Next »"
+  Then I should see the comment count increased by 0
+
+
   
