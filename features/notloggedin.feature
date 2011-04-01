@@ -68,3 +68,8 @@ Scenario: Create an account
   Then I should not see "something@unique.com is already taken"
   Then I fill in the given name field with "given"
   Then I fill in the family name field field with "name"
+ 
+@googleAnalysis
+  Scenario: Google analytics should be loaded on every page
+  When I am on the home page
+  Then I should see "google-analytics.com/ga.js"
