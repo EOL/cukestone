@@ -51,7 +51,7 @@ Scenario:  User tries to search but doesn't give any input
 Scenario: Create an account
   When I am on the homepage
   And I follow "create an account"
-  And I wait 5 seconds
+  And I wait 10 seconds
   Then I should be on the registration page
   Then the username field should have focus
   When I fill in the username field with "capstone_user"
@@ -59,6 +59,7 @@ Scenario: Create an account
   Then I should see "capstone_user is already taken"
   When I fill in the username field with "something_unique"
   And I fill in the confirm password field with "abcde"
+  And I click on the page
   Then I should not see "capstone_user is already taken"
   When I fill in the email address field with "klans@eol.org"
   And I click on the page
