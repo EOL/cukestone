@@ -68,20 +68,3 @@ Scenario: Create an account
   Then I should not see "something@unique.com is already taken"
   Then I fill in the given name field with "given"
   Then I fill in the family name field field with "name"
-  #When I check the curator checkbox
-  #Then I should see "Select a clade"
-  #When I click "show clade browser"
-  #Then I should see the clade list
-  #When I click on the + sign
-  #Then I should see its children
-  #When I click on a child's + sign
-  #Then I should see more children
-  #When I click on a low level child
-  #Then that child should be bold
-  #When I click "clear"
-  #Then that child should not be bold
-  #When I click "hide clade browser"
-  #Then I should not see the clade list
-  #When I uncheck the curator checkbox
-  #Then I should not see "Select a clade"
-  #And I should see the reCaptcha
