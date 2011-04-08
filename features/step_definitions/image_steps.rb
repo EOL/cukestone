@@ -4,14 +4,14 @@ When /^(?:|I )see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
 end
 
 
-Then /^(?:|I )should see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
+Then /^(?:|I )can see(?: the)? ([^\"]*) image(?:s)?$/ do | alt_or_id |
   res = to_selector(alt_or_id)
-  
+ 
   # Store image id's and titles as key-value pairs
   if @images == nil
     @images = Hash.new()
   end
-  
+ 
   if page.should have_xpath("//img[@alt='#{res}' or @id='#{res}']")
     @images[alt_or_id] = find(:xpath, "//img[@alt='#{res}' or @id='#{res}']")[:title]
 
