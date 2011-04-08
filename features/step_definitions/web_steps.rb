@@ -153,6 +153,10 @@ Then /^(?:|I )should see <([^"]*)>$/ do |css|
     page.should have_css(to_selector(css))
 end
 
+Then /^(?:|I )should see ([^"\/]*)$/ do |css|
+    page.should have_css(to_selector(css))
+end
+
 When /^(.+) should be visible$/ do |field|
   find(to_selector(field)).visible?.should be_true
 end
