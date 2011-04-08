@@ -138,6 +138,9 @@ Then /^(?:|I )wait (\d+) seconds$/ do |n|
   sleep(n.to_i)
 end
 
+Then /^(?:|I )should see ([^"\/]*)$/ do |css|
+    page.should have_css(to_selector(css))
+end
 
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
@@ -164,6 +167,24 @@ Then /^(?:|I )should see \/([^\/]*)\/(?: within "([^"]*)")?$/ do |regexp, select
     else
       assert page.has_xpath?('//*', :text => regexp)
     end
+  end
+end
+
+Then /^(?:|I )should see "([^"]*)" within (.+)$/ do |text, selector|
+  with_scope(to_selector(selector)) do
+      page.should have_content(text)
+  end
+end
+
+When /^(?:|I )should see a link with text "([^"]*)"(?: within (.+))?$/ do |text,selector|
+  with_scope(to_selector(selector)) do
+    page.should have_link(text)
+  end
+end
+
+Then /^(?:|I )should not see a link with text "([^"]*)"(?: within (.+))?$/ do |text,selector|
+  with_scope(to_selector(selector)) do
+    page.should_not have_link(text)
   end
 end
 
@@ -299,7 +320,7 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|   
+When /^(?:|I )follow ([^"]*)(?: within ([^"]*))?$/ do |link, selector|
   linkLocator=to_selector(link)
   if ( linkLocator =~ /#/)
     find(linkLocator).click

@@ -1,62 +1,8 @@
-When /^I login as a user$/ do
-    fill_in(to_selector('the username field'), :with => Cukestone::Conf.user)
-    fill_in(to_selector('the password field'), :with => Cukestone::Conf.user_password)
-    find(to_selector('the login button')).click
-end
-
-When /^I login as a curator$/ do
-    fill_in(to_selector('the username field'), :with => Cukestone::Conf.curator)
-    fill_in(to_selector('the password field'), :with => Cukestone::Conf.curator_password)
-    find(to_selector('the login button')).click
-end
-
-Given /^I sign in as a (.*)$/ do |user|
-  steps %Q{
-    When I am on the login page
-    And I login as a #{user}
-    And wait 3 seconds
-  }  
-end
-
-
-Then /^(?:|I )should see (the text comment count|the image comment count)(?: increased by (\d+))?$/ do |selector,number|
-  if @comment_count 	  
+Then /^(?:|I )can see (the text comment count|the image comment count)(?: increased by (\d+))?$/ do |selector,number|
+  if @comment_count
   	  new_count = find(to_selector(selector)).text.to_i
   	  (new_count - @comment_count).should == number.to_i
-  else  	  
+  else 
   	  @comment_count = find(to_selector(selector)).text.to_i
   end
 end
-
-When /^I should see the pagination$/ do
-  page.should have_css(to_selector('the pagination'))
-end
-
-
-Then /^(?:|I )should see "([^"]*)" within (.+)$/ do |text, selector|
-  with_scope(to_selector(selector)) do	  
-      page.should have_content(text)
-  end
-end
-
-When /^(?:|I )should see a link with text "([^"]*)"(?: within (.+))?$/ do |text,selector|
-  with_scope(to_selector(selector)) do
-    page.should have_link(text)		
-  end	  
-end
-
-
-Then /^(?:|I )should not see a link with text "([^"]*)"(?: within (.+))?$/ do |text,selector|
-  with_scope(to_selector(selector)) do
-    page.should_not have_link(text)		
-  end
-end
-
-
-
-
-
-
-
-
-
