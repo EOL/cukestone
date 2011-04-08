@@ -148,6 +148,14 @@ end
 # HACK here!  Seems there a lot of ways "should see" can be used -- plain text
 # css, xpath, json, etc.  Need to figure out way to reduce redundancy where possible.
 
+When /^(.+) should be visible$/ do |field|
+  find(to_selector(field)).visible?.should be_true
+end
+
+Then /^(.+) should be invisible$/ do |field|
+  find(to_selector(field)).visible?.should be_false
+end
+
 Then /^(?:|I )should see <([^"]*)>$/ do |css|
     page.should have_css(to_selector(css))
 end
