@@ -149,10 +149,6 @@ end
 # HACK here!  Seems there a lot of ways "should see" can be used -- plain text
 # css, xpath, json, etc.  Need to figure out way to reduce redundancy where possible.
 
-Then /^(?:|I )should see <([^"]*)>$/ do |css|
-    page.should have_css(to_selector(css))
-end
-
 Then /^(?:|I )should see ([^"\/]*)$/ do |css|
     page.should have_css(to_selector(css))
 end

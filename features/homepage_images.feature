@@ -52,4 +52,4 @@ Scenario: User clicks "more species"
 Scenario: User clicks a news item
   When I am on the homepage
   When I click all "news headlines" within "Whats New"
-  Then I should see <expanded news item>
+  Then I should see expanded news item
