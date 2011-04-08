@@ -17,5 +17,3 @@ Feature: User logged in
   And the Flash Error Message should be visible
   And I wait 3 seconds
   Then the Flash Error Message should be invisible
-
- 
