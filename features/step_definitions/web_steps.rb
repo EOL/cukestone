@@ -122,11 +122,17 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do 
   end
 end
 
-
-Then /^(?:|I )wait (\d+) seconds$/ do |n|
-  sleep(n.to_i) 
+When /^(.+) should be visible$/ do |field|
+  find(to_selector(field)).visible?.should be_true
 end
 
+Then /^(.+) should be invisible$/ do |field|
+  find(to_selector(field)).visible?.should be_false
+end
+
+Then /^(?:|I )wait (\d+) seconds$/ do |n|
+  sleep(n.to_i)
+end
 
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
@@ -234,7 +240,7 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |
     end
   end
 end
- 
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -249,7 +255,7 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   actual_params = query ? CGI.parse(query) : {}
   expected_params = {}
   expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')}
-  
+
   if actual_params.respond_to? :should
     actual_params.should == expected_params
   else
