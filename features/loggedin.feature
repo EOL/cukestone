@@ -72,5 +72,29 @@ Feature: User logged in
   Then I should see "TigerTitleSubmit"
   And I should see "Source and Additional Information"
 
+  @subafterprev
+  Scenario: Submitting after using the preview should remove the preview before submitting.
+  Given I am signed in as a user
+  When I am on the tiger page
+  And I follow the Add New Content link
+  And I fill in the Add New Content Title field with "TigerTitlePreview"
+  And I fill in the Add New Content Text field with "TigerTextPreview"
+  And I fill in the Add New Content References field with "TigerRefsPreview"
+  And I press the Add New Content preview button
+  Then I should see "TigerTitlePreview"
+  And I should see "Source and Additional Information"
+  When I fill in the Add New Content Title field with "TigerTitleSubmit"
+  And I fill in the Add New Content Text field with "TigerTextSubmit"
+  And I fill in the Add New Content References field with "TigerRefsSubmit"
+  And I press the Add New Content confirm button
+  Then I should not see "TigerTitlePreview"
+  And I should see "TigerTitleSubmit"
+  And I should see "Source and Additional Information"
+
+
+
+
+
+
 
 
