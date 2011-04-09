@@ -190,7 +190,7 @@ Then /^(?:|I )should see \/([^\/]*)\/(?: within "([^"]*)")?$/ do |regexp, select
   end
 end
 
-Then /^(?:|I )should see "([^"]*)" within (.+)$/ do |text, selector|
+Then /^(?:|I )should see "([^"]*)" within ([^"]+)$/ do |text, selector|
   with_scope(to_selector(selector)) do
       page.should have_content(text)
   end
