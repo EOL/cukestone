@@ -45,3 +45,11 @@
 'the image comment count' : '#large-image-comment-button .popup-link .span_block'
 'the text comment count' : '#right_text_buttons_group .popup-link .span_block'
 'the pagination' : '#commentsContain .pagination'
+
+'the Add New Content link' : '#new_text_toc_text'
+'the Add New Content toc button' : '#new_text_toc_button'
+'the Add New Content content button' : '#new_text_content_button'
+'the Add New Content field' : '#insert_text_popup_content'
+'the Add New Content close button' : '#insert_text_popup .close-button'
+'the Add New Content preview button' : '#insert_text_popup .popup-content input[type="button"]'
+'the Add New Content confirm button' : '#insert_text_popup .popup-content input[type="submit"]'
